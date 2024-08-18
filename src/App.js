@@ -4,10 +4,17 @@ function App() {
   const [pepperoniIsChecked, setPepperoniIsChecked] = useState(false);
 
   const togglePepperoni = (e) => setPepperoniIsChecked(e.target.checked);
+  const [size, setSize] = useState("Small");
+  const selectSize = (e) => setSize(e.target.value);
+  const [contactInfo, setContactInfo] = useState("");
+const updateContactField = (e) => setContactInfo(e.target.value);
 
   return (
     <div>
       <h1>Place an Order</h1>
+      <p>
+      Your selection: {size} {pepperoniIsChecked ? "pepperoni" : "cheese"}
+    </p>
       <form>
         <div>
           <h3>Toppings</h3>
@@ -20,6 +27,27 @@ function App() {
           />
           <label htmlFor="pepperoni">Add pepperoni</label>
         </div>
+        <div>
+          <h3>Size</h3>
+          <label htmlFor="select-size">Select size: </label>
+          <select id="select-size" value={size} onChange={selectSize}>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+        <div>
+        <h3>Contact Info</h3>
+        <label htmlFor="email">Enter your email address: </label>
+        <input
+          type="text"
+          value={contactInfo}
+          id="email"
+          placeholder="email address"
+          onChange={updateContactField}
+        />
+      </div>
+      <button type="submit">Submit Order</button>
       </form>
     </div>
   );
